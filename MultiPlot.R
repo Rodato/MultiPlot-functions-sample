@@ -42,11 +42,9 @@ MultipleBarPlot_G3<-function(data){
     data.1<-as.data.frame(data[i,])
     colnames(data.1)<-c("NIDO","Mod. Familiar","Mod. Institucional")
     name<-as.character(data.1$NIDO)
-    library(reshape2)
     dd=melt(data.1, id=c("NIDO"))
     dd<-dd[,-1]
     colnames(dd)<-c("group","value")
-    library(ggplot2)
     p <-ggplot(dd, aes(group, value))
     p +geom_bar(stat = "identity",fill="steelblue")+
       #geom_text(aes(label=value), vjust=-0.3, size=6)+
