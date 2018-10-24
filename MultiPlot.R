@@ -1,6 +1,9 @@
 setwd("") #set your working directory
-x<-read.csv2("corte.csv")
+x<-read.csv2("data.csv")
 x<-x[c(1:102),]
+
+library(ggplot2)
+library(reshape2)
 
 g.1<-x[,c(6,12)]
 g.2<-x[,c(6,13,14)]
@@ -16,11 +19,9 @@ MultiplePiePlots<-function(data){
     data.1<-as.data.frame(data[i,])
     colnames(data.1)<-c("NIDO","M","F")
     name<-as.character(data.1$NIDO)
-    library(reshape2)
     dd=melt(data.1, id=c("NIDO"))
     dd<-dd[,-1]
     colnames(dd)<-c("group","value")
-    library(ggplot2)
     bp<- ggplot(dd, aes(x="", y=value, fill=group))+
       geom_bar(width = 1, stat = "identity")
     
